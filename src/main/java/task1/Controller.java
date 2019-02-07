@@ -1,6 +1,5 @@
 package main.java;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -14,7 +13,8 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
-        stringRestrictions = view.receiveStringRestrictions();
+        stringRestrictions.add("Hello");
+        stringRestrictions.add("world!");
     }
 
     public void processUser() {
@@ -24,15 +24,9 @@ public class Controller {
 
         while (startProgram) {
 
-            String currentValue = model.getValue();
+            model.addCurrentStringValue(inputStringValueWithScanner(in));
 
-            if (currentValue.isEmpty()) {
-                model.setValue(inputStringValueWithScanner(in));
-            } else {
-                model.addCurrentStringValue(inputStringValueWithScanner(in));
-            }
-
-            String matchString = stringRestrictions.stream().collect(Collectors.joining(" "));
+            String matchString = String.join(" ", stringRestrictions);
 
             if (matchString.equals(model.getValue())) {
                 startProgram = false;
@@ -45,13 +39,12 @@ public class Controller {
 
     private String inputStringValueWithScanner(Scanner in) {
 
-        String currentValue = model.getValue();
-        String inputValue = stringRestrictions.get(0);
+        return stringRestrictions.stream().map(s -> receiveNextLine(in, s)).collect(Collectors.joining(" "));
 
-        if (!currentValue.isEmpty()) {
-            List<String> currentValueList = Arrays.asList(currentValue.split(" "));
-            inputValue = stringRestrictions.stream().filter(s -> !currentValueList.contains(s)).findFirst().get();
-        }
+    }
+
+
+    private String receiveNextLine(Scanner in, String inputValue) {
 
         view.printMessage(View.INPUT_STRING_DATA + inputValue);
 
@@ -60,6 +53,8 @@ public class Controller {
             in.nextLine();
         }
         return in.nextLine();
+
     }
+
 
 }

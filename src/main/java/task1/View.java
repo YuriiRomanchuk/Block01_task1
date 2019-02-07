@@ -17,12 +17,4 @@ public class View {
         System.out.println(message + value);
     }
 
-    public List<String> receiveStringRestrictions() {
-        List<String> stringRestrictions = new ArrayList<>();
-        stringRestrictions.add("Hello");
-        stringRestrictions.add("world!");
-
-        return stringRestrictions;
-    }
-
 }
