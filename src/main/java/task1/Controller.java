@@ -1,4 +1,4 @@
-package main.java;
+package task1;
 
 import java.util.List;
 import java.util.Scanner;
@@ -33,7 +33,7 @@ public class Controller {
             }
         }
 
-        view.printMessageAndValue(view.CURRENT_STRING, model.getValue());
+        view.printMessageAndValue(View.CURRENT_STRING, model.getValue());
 
     }
 
@@ -55,6 +55,5 @@ public class Controller {
         return in.nextLine();
 
     }
-
 
 }

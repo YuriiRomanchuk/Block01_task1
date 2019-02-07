@@ -1,4 +1,4 @@
-package main.java;
+package task1;
 
 public class MainClass {
 

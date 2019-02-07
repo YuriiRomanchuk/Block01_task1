@@ -1,7 +1,4 @@
-package main.java;
-
-import java.util.ArrayList;
-import java.util.List;
+package task1;
 
 public class View {
 
